@@ -36,4 +36,16 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { posts, pages };
+// One file per topic. `posts` lists post ids in reading order and is the only
+// place topic membership and ordering are defined (see src/utils/topics.ts).
+const topics = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/topics" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    order: z.number().int(),
+    posts: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { posts, pages, topics };

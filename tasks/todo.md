@@ -49,13 +49,13 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** On branch `feat/topics`, write `src/content/posts/mvcc-and-isolation-levels.md` (working slug) adapted from vault note `database-isolation-levels-mvcc-and-anomalies`: rewritten as a blog post (intro that motivates the problem, explanation, examples, gotchas), not a copy of the note. Scrub any work/employer-specific references. Frontmatter: title, description, pubDatetime, tags, `sourceNotes`. Author reviews and edits.
 
 **Acceptance criteria:**
-- [ ] Post reads as a standalone article; no Obsidian wikilinks, no work-specific names
-- [ ] `sourceNotes` records the vault note slug
-- [ ] Author has reviewed and approved the text
+- [x] Post reads as a standalone article; no Obsidian wikilinks, no work-specific names
+- [x] `sourceNotes` records the vault note slug
+- [x] Author has reviewed and approved the text
 
 **Verification:**
-- [ ] `pnpm dev` renders the post correctly (code blocks, tables, headings)
-- [ ] `grep -iE 'fop|klarna|translation-service|commerce-lab|\[\[' src/content/posts/` → no hits
+- [x] `pnpm dev` renders the post correctly (code blocks, tables, headings)
+- [x] `grep -iE 'fop|klarna|translation-service|commerce-lab|\[\[' src/content/posts/` → no hits
 
 **Dependencies:** T1
 **Files likely touched:** `src/content/posts/mvcc-and-isolation-levels.md`, `src/content.config.ts` (`sourceNotes` field)
