@@ -6,4 +6,5 @@ posts:
   - postgres-isolation-levels-and-mvcc
   - postgres-wal-durability-and-checkpoints
   - postgres-long-transactions-and-vacuum-bloat
+  - postgres-autovacuum-execution-and-tuning
 ---
