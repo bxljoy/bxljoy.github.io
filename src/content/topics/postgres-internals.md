@@ -5,4 +5,5 @@ order: 1
 posts:
   - postgres-isolation-levels-and-mvcc
   - postgres-wal-durability-and-checkpoints
+  - postgres-long-transactions-and-vacuum-bloat
 ---
