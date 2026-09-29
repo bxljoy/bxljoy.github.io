@@ -24,6 +24,7 @@ jobs:
         uses: withastro/action@v6
         with:
           node-version: 24
+          build-cmd: pnpm test && pnpm run build
 
   deploy:
     needs: build

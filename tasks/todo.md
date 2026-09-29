@@ -137,7 +137,7 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 
 ## Checkpoint B: Topic layer
 - [x] `pnpm test && pnpm build` pass · broken topic fails build · home → topic → post → next works
-- [ ] Author review
+- [x] Author review
 
 ---
 
@@ -146,13 +146,13 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** Write a short About (who, what this blog is, links). Add `pnpm test` to `ci.yml` and deploy workflow gate. Run Lighthouse (mobile) on `/` and a post; fix issues found. Check 375px for horizontal scroll on home, topic, post (incl. wide code blocks/tables).
 
 **Acceptance criteria:**
-- [ ] Lighthouse mobile on `/`: performance ≥ 90, accessibility ≥ 95
-- [ ] No horizontal page scroll at 375px on home, topic, post
-- [ ] CI fails if topic tests fail
+- [x] Lighthouse mobile on `/`: performance ≥ 90, accessibility ≥ 95
+- [x] No horizontal page scroll at 375px on home, topic, post
+- [x] CI fails if topic tests fail
 
 **Verification:**
-- [ ] Lighthouse report numbers recorded in the PR/commit message
-- [ ] Browser check at 375px
+- [x] Lighthouse report numbers recorded in the PR/commit message
+- [x] Browser check at 375px
 
 **Dependencies:** T6, T7
 **Files likely touched:** `src/content/pages/about.*`, `.github/workflows/ci.yml`, `.github/workflows/deploy.yml`
