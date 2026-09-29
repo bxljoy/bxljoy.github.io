@@ -21,6 +21,8 @@ const posts = defineCollection({
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
+      // Obsidian vault note slugs this post was adapted from (provenance only, not rendered).
+      sourceNotes: z.array(z.string()).optional(),
     }),
 });
 
