@@ -1,0 +1,29 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import type { TopicWithPosts } from "@/utils/getTopicMap";
+import config from "@/config";
+
+type Props = TopicWithPosts;
+
+const { topic, posts } = Astro.props;
+const locale = Astro.currentLocale ?? config.site.lang;
+const count = posts.length;
+---
+
+<li class="my-6">
+  <a
+    href={getRelativeLocaleUrl(locale, `topics/${topic.id}`)}
+    class:list={[
+      "text-accent inline-block text-lg font-medium",
+      "decoration-dashed underline-offset-4 hover:underline",
+      "focus-visible:no-underline focus-visible:underline-offset-0",
+    ]}
+  >
+    <h2>{topic.data.title}</h2>
+  </a>
+  <p class="text-muted-foreground text-sm">
+    {count}
+    {count === 1 ? "post" : "posts"}
+  </p>
+  <p>{topic.data.description}</p>
+</li>

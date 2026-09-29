@@ -1,6 +1,7 @@
 export interface UIStrings {
   nav: {
     home: string;
+    topics: string;
     posts: string;
     tags: string;
     about: string;
@@ -41,6 +42,9 @@ export interface UIStrings {
 
     tagsTitle: string;
     tagsDesc: string;
+
+    topicsTitle: string;
+    topicsDesc: string;
 
     postsTitle: string;
     postsDesc: string;

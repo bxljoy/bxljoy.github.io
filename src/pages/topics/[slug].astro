@@ -1,0 +1,67 @@
+---
+import { render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import Datetime from "@/components/Datetime.astro";
+import { getPostUrl } from "@/utils/getPostPaths";
+import { getTopicMap, type TopicWithPosts } from "@/utils/getTopicMap";
+import config from "@/config";
+
+export async function getStaticPaths() {
+  const { topics } = await getTopicMap();
+  return topics.map(entry => ({
+    params: { slug: entry.topic.id },
+    props: entry,
+  }));
+}
+
+type Props = TopicWithPosts;
+
+const { topic, posts } = Astro.props;
+const { Content } = await render(topic);
+---
+
+<Layout
+  title={`${topic.data.title} | ${config.site.title}`}
+  description={topic.data.description}
+>
+  <Header />
+  <Breadcrumb />
+  <Main pageTitle={topic.data.title} pageDesc={topic.data.description}>
+    <div class="app-prose max-w-app">
+      <Content />
+    </div>
+    <ol>
+      {
+        posts.map((post, index) => (
+          <li class="my-6 flex gap-3">
+            <span
+              aria-hidden="true"
+              class="text-accent w-6 flex-none text-lg font-medium tabular-nums"
+            >
+              {index + 1}.
+            </span>
+            <div>
+              <a
+                href={getPostUrl(post.id, post.filePath, Astro.currentLocale)}
+                class="text-accent inline-block text-lg font-medium decoration-dashed underline-offset-4 hover:underline"
+              >
+                <h2>{post.data.title}</h2>
+              </a>
+              <Datetime
+                pubDatetime={post.data.pubDatetime}
+                modDatetime={post.data.modDatetime}
+                timezone={post.data.timezone}
+              />
+              <p>{post.data.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </Main>
+  <Footer />
+</Layout>
