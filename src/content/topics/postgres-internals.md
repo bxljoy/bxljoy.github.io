@@ -4,4 +4,5 @@ description: How Postgres stores, versions, isolates, and durably writes your ro
 order: 1
 posts:
   - postgres-isolation-levels-and-mvcc
+  - postgres-wal-durability-and-checkpoints
 ---
