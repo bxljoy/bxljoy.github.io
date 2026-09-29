@@ -68,13 +68,13 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** Add `topics` collection (`title`, `description`, `order`, `posts: string[]`) to `src/content.config.ts`. Implement pure functions in `src/utils/topics.ts`: `validateTopicMap`, `getReadingPath` (published posts in listed order), `getTopicForPost` (topic + index + total + prev/next). Add `getTopicMap()` loader that fetches both collections, applies `postFilter`, validates, and throws listing every problem. Add Vitest (`pnpm test`). Create `src/content/topics/postgres-internals.md` listing the first post.
 
 **Acceptance criteria:**
-- [ ] Missing slug, orphan published post, and duplicate membership each produce a named problem
-- [ ] Drafts listed in a topic are excluded from reading path + numbering, not reported as errors
-- [ ] Topics with zero published posts are omitted from the map
+- [x] Missing slug, orphan published post, and duplicate membership each produce a named problem
+- [x] Drafts listed in a topic are excluded from reading path + numbering, not reported as errors
+- [x] Topics with zero published posts are omitted from the map
 
 **Verification:**
-- [ ] `pnpm test` → all topic tests pass
-- [ ] Temporarily add a bogus slug to the topic file → `pnpm build` fails naming file + slug; revert
+- [x] `pnpm test` → all topic tests pass
+- [x] Temporarily add a bogus slug to the topic file → `pnpm build` fails naming file + slug; revert
 
 **Dependencies:** T3
 **Files likely touched:** `src/content.config.ts`, `src/utils/topics.ts`, `src/utils/topics.test.ts`, `package.json`, `src/content/topics/postgres-internals.md`
@@ -87,12 +87,12 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** `src/pages/topics/[slug].astro` renders topic title, body intro, and a numbered list (title, description, date) in topic order. `src/pages/topics/index.astro` lists all topics (full map, reused by homepage in T7 via a `TopicCard` component).
 
 **Acceptance criteria:**
-- [ ] `/topics/postgres-internals` shows posts numbered 1..N in topic-file order
-- [ ] Reordering the `posts` list changes the page order with no other edit
-- [ ] Topic with zero published posts → no page generated
+- [x] `/topics/postgres-internals` shows posts numbered 1..N in topic-file order
+- [x] Reordering the `posts` list changes the page order with no other edit
+- [x] Topic with zero published posts → no page generated
 
 **Verification:**
-- [ ] `pnpm build && pnpm preview` → manual check; swap order of two slugs (add a throwaway second draft→published post locally if needed) and confirm
+- [x] `pnpm build && pnpm preview` → manual check; swap order of two slugs (add a throwaway second draft→published post locally if needed) and confirm
 
 **Dependencies:** T4
 **Files likely touched:** `src/pages/topics/[slug].astro`, `src/pages/topics/index.astro`, `src/components/TopicCard.astro`
@@ -105,12 +105,12 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** In `src/pages/posts/[...slug]/index.astro`, replace date-based prev/next with `getTopicForPost` results. Add `TopicNav` component above the title: "Part N of M · <Topic link>". Reuse the existing `AdjacentPostNav` markup with topic-scoped posts.
 
 **Acceptance criteria:**
-- [ ] Post shows "Part N of M · Postgres Internals" linking to the topic page
-- [ ] Prev/next go to neighbours *within the topic*; none shown at path ends
-- [ ] Pagefind ignores the breadcrumb (`data-pagefind-ignore`)
+- [x] Post shows "Part N of M · Postgres Internals" linking to the topic page
+- [x] Prev/next go to neighbours *within the topic*; none shown at path ends
+- [x] Pagefind ignores the breadcrumb (`data-pagefind-ignore`)
 
 **Verification:**
-- [ ] `pnpm build && pnpm preview` → check first, middle, last positions (use a local 3-post fixture topic, not committed)
+- [x] `pnpm build && pnpm preview` → check first, middle, last positions (use a local 3-post fixture topic, not committed)
 
 **Dependencies:** T5
 **Files likely touched:** `src/pages/posts/[...slug]/index.astro`, `src/components/TopicNav.astro`, `src/pages/posts/[...slug]/_components/AdjacentPostNav.astro`
@@ -123,20 +123,21 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** Replace `src/pages/index.astro` content: hero (name, one-line tagline, socials), topic cards sorted by `order` (title, description, post count), then 3–5 recently published posts. Header nav → Topics · Posts · Tags · Search · About (Archives remains reachable but not in nav).
 
 **Acceptance criteria:**
-- [ ] Homepage shows every non-empty topic as a card in `order`
-- [ ] "Topics" nav item active on `/` and `/topics/*`
-- [ ] Recruiter test: within one screen at 375px, you can see who Alex is and at least the first topic card
+- [x] Homepage shows every non-empty topic as a card in `order`
+- [x] "Topics" nav item active on `/` and `/topics/*`
+- [x] Recruiter test: within one screen at 375px, you can see who Alex is and at least the first topic card
 
 **Verification:**
-- [ ] `pnpm build && pnpm preview` at desktop and 375px width
-- [ ] Author approves tagline and layout
+- [x] `pnpm build && pnpm preview` at desktop and 375px width
+- [x] Author approves tagline and layout
 
 **Dependencies:** T5
 **Files likely touched:** `src/pages/index.astro`, `src/components/Header.astro`, `src/i18n/lang/en.*` (nav label)
 **Estimated scope:** M
 
 ## Checkpoint B: Topic layer
-- [ ] `pnpm test && pnpm build` pass · broken topic fails build · home → topic → post → next works · author review
+- [x] `pnpm test && pnpm build` pass · broken topic fails build · home → topic → post → next works
+- [ ] Author review
 
 ---
 

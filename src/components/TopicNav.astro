@@ -16,7 +16,7 @@ const t = useTranslations(locale);
 ---
 
 <p data-pagefind-ignore class="text-muted-foreground mb-2 text-sm">
-  {tplStr(t.post.partOfTopic, { number, total })} ·
+  {`${tplStr(t.post.partOfTopic, { number, total })} · `}
   <a
     href={getRelativeLocaleUrl(locale, `topics/${topic.id}`)}
     class="text-accent decoration-dashed underline-offset-4 hover:underline"
