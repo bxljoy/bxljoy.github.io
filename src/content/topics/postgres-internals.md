@@ -7,4 +7,5 @@ posts:
   - postgres-wal-durability-and-checkpoints
   - postgres-long-transactions-and-vacuum-bloat
   - postgres-autovacuum-execution-and-tuning
+  - database-indexing-and-query-planning
 ---
