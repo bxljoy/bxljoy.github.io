@@ -22,6 +22,7 @@ export default {
     editPage: "Edit page",
     previousPost: "Previous Post",
     nextPost: "Next Post",
+    partOfTopic: "Part {{number}} of {{total}}",
   },
   pagination: {
     prev: "Prev",

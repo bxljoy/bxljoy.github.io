@@ -14,36 +14,35 @@ import ShareLinks from "./_components/ShareLinks.astro";
 import BackButton from "./_components/BackButton.astro";
 import BackToTopButton from "./_components/BackToTopButton.astro";
 import AdjacentPostNav from "./_components/AdjacentPostNav.astro";
+import TopicNav from "@/components/TopicNav.astro";
+import { getTopicMap } from "@/utils/getTopicMap";
 import config from "@/config";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  const sortedPosts = getSortedPosts(posts);
+  const { positionOf } = await getTopicMap();
+  const toAdjacent = (post: CollectionEntry<"posts"> | null) =>
+    post
+      ? { id: post.id, title: post.data.title, filePath: post.filePath }
+      : null;
 
-  return sortedPosts.map((post, index) => ({
-    params: { slug: getPostSlug(post.id, post.filePath) },
-    props: {
-      post,
-      // sortedPosts is newest-first, so "older" (prev) is a higher index
-      // and "newer" (next) is a lower index.
-      prevPost:
-        index < sortedPosts.length - 1
-          ? {
-              id: sortedPosts[index + 1].id,
-              title: sortedPosts[index + 1].data.title,
-              filePath: sortedPosts[index + 1].filePath,
-            }
-          : null,
-      nextPost:
-        index > 0
-          ? {
-              id: sortedPosts[index - 1].id,
-              title: sortedPosts[index - 1].data.title,
-              filePath: sortedPosts[index - 1].filePath,
-            }
-          : null,
-    },
-  }));
+  // Prev/next stay inside the post's topic, following the topic file's order.
+  return getSortedPosts(posts).map(post => {
+    const position = positionOf(post.id);
+    return {
+      params: { slug: getPostSlug(post.id, post.filePath) },
+      props: {
+        post,
+        position: position && {
+          topic: position.topic,
+          number: position.number,
+          total: position.total,
+        },
+        prevPost: toAdjacent(position?.prev ?? null),
+        nextPost: toAdjacent(position?.next ?? null),
+      },
+    };
+  });
 }
 
 type AdjacentPost = {
@@ -54,11 +53,16 @@ type AdjacentPost = {
 
 type Props = {
   post: CollectionEntry<"posts">;
+  position: {
+    topic: CollectionEntry<"topics">;
+    number: number;
+    total: number;
+  } | null;
   prevPost: AdjacentPost;
   nextPost: AdjacentPost;
 };
 
-const { post, prevPost, nextPost } = Astro.props;
+const { post, position, prevPost, nextPost } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
 
 const {
@@ -113,6 +117,8 @@ const ogImage = ogImageUrl
     class:list={["app-layout", { "mt-8": !config.features.showBackButton }]}
     data-pagefind-body
   >
+    {position && <TopicNav {...position} />}
+
     <h1
       style={{ viewTransitionName: toTransitionName(post.id) }}
       class="text-accent inline-block text-2xl font-bold sm:text-3xl"
