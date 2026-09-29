@@ -22,8 +22,7 @@ const count = posts.length;
     <h2>{topic.data.title}</h2>
   </a>
   <p class="text-muted-foreground text-sm">
-    {count}
-    {count === 1 ? "post" : "posts"}
+    {`${count} ${count === 1 ? "post" : "posts"}`}
   </p>
   <p>{topic.data.description}</p>
 </li>
