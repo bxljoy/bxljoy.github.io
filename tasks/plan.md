@@ -30,32 +30,32 @@ T1 scaffold ──► T2 deploy (fail fast on Pages/Actions)
 ## Task List
 
 ### Phase 1: Foundation (on `main`)
-- [ ] T1: Scaffold AstroPaper with site identity
-- [ ] T2: Create GitHub repo + Pages deploy workflow
+- [x] T1: Scaffold AstroPaper with site identity
+- [x] T2: Create GitHub repo + Pages deploy workflow
 
 ### Checkpoint A: Foundation
-- [ ] Template site (no demo posts) live at https://bxljoy.github.io
-- [ ] `pnpm build` clean locally and in Actions
+- [x] Template site (no demo posts) live at https://bxljoy.github.io
+- [x] `pnpm build` clean locally and in Actions
 
 ### Phase 2: Topic layer (on `feat/topics`)
-- [ ] T3: Adapt first post from the vault (content only)
-- [ ] T4: Topics collection + `validateTopicMap` + unit tests
-- [ ] T5: Topic reading-path page `/topics/[slug]`
-- [ ] T6: Topic breadcrumb + topic-scoped prev/next on posts
-- [ ] T7: Topic-map homepage + header nav
+- [x] T3: Adapt first post from the vault (content only)
+- [x] T4: Topics collection + `validateTopicMap` + unit tests
+- [x] T5: Topic reading-path page `/topics/[slug]`
+- [x] T6: Topic breadcrumb + topic-scoped prev/next on posts
+- [x] T7: Topic-map homepage + header nav
 
 ### Checkpoint B: Topic layer
-- [ ] `pnpm test && pnpm build` pass
-- [ ] Broken topic file fails the build with a clear message
-- [ ] Home → topic → post → next flow works in `pnpm preview`
-- [ ] Author reviews the first post and UI
+- [x] `pnpm test && pnpm build` pass
+- [x] Broken topic file fails the build with a clear message
+- [x] Home → topic → post → next flow works in `pnpm preview`
+- [x] Author reviews the first post and UI
 
 ### Phase 3: Polish & launch
-- [ ] T8: About page, CI test step, mobile + Lighthouse verification
-- [ ] T9: Launch — merge `feat/topics` to `main` (author approval)
+- [x] T8: About page, CI test step, mobile + Lighthouse verification
+- [x] T9: Launch — merge `feat/topics` to `main` (author approval)
 
 ### Checkpoint C: Complete
-- [ ] All 8 spec success criteria met on the live site
+- [x] All 8 spec success criteria met on the live site
 
 ## Risks and Mitigations
 

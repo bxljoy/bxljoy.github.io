@@ -165,14 +165,14 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** With author approval, merge to `main`; watch deploy; verify live site against all spec success criteria. Author adds the URL to LinkedIn + GitHub profile.
 
 **Acceptance criteria:**
-- [ ] All 8 success criteria in `SPEC-site.md` verified on https://bxljoy.github.io
+- [x] All 8 success criteria in `SPEC-site.md` verified on https://bxljoy.github.io
 
 **Verification:**
-- [ ] `gh run watch` success; manual walkthrough on phone
+- [x] `gh run watch` success; manual walkthrough on phone
 
 **Dependencies:** T8
 **Files likely touched:** none (merge)
 **Estimated scope:** XS
 
 ## Checkpoint C: Complete
-- [ ] Spec success criteria met · then start `SPEC-drafting.md` (`/blog` skill)
+- [x] Spec success criteria met · then start `SPEC-drafting.md` (`/blog` skill)
