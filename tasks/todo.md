@@ -9,13 +9,13 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** Copy AstroPaper v6.1 into this directory (no upstream git history), remove demo content, set identity (Alex Bao's Blog, author, URL `https://bxljoy.github.io/`, timezone, socials GitHub + LinkedIn + mail), disable "edit post", trim share links to LinkedIn/X/mail, add `.nvmrc` (`24`), `git init` on `main`. Keep SPEC/tasks files.
 
 **Acceptance criteria:**
-- [ ] No AstroPaper demo posts or "Mingalaba"/AstroPaper copy remain on any page
-- [ ] `astro-paper.config.ts` reflects Alex Bao's identity and socials
-- [ ] Initial commit on `main`
+- [x] No AstroPaper demo posts or "Mingalaba"/AstroPaper copy remain on any page
+- [x] `astro-paper.config.ts` reflects Alex Bao's identity and socials
+- [x] Initial commit on `main`
 
 **Verification:**
-- [ ] `pnpm install && pnpm build` succeeds (Node 24, pnpm via corepack)
-- [ ] `pnpm dev` → header shows "Alex Bao's Blog", footer socials link to GitHub + LinkedIn
+- [x] `pnpm install && pnpm build` succeeds (Node 24, pnpm via corepack)
+- [x] `pnpm dev` → header shows "Alex Bao's Blog", footer socials link to GitHub + LinkedIn
 
 **Dependencies:** None
 **Files likely touched:** `astro-paper.config.ts`, `src/content/posts/*` (deleted), `src/pages/index.astro` (hero text only), `src/content/pages/about.*`, `.nvmrc`
@@ -28,19 +28,19 @@ Plan: [`plan.md`](plan.md) · Spec: [`../SPEC-site.md`](../SPEC-site.md)
 **Description:** Create public repo `bxljoy/bxljoy.github.io`, add `.github/workflows/deploy.yml` (checkout → `withastro/action` with Node 24 → `actions/deploy-pages`) on push to `main`, set Pages source to "GitHub Actions", push.
 
 **Acceptance criteria:**
-- [ ] Push to `main` triggers a green deploy run
-- [ ] https://bxljoy.github.io serves the scaffolded site with working CSS, search page, and RSS
+- [x] Push to `main` triggers a green deploy run
+- [x] https://bxljoy.github.io serves the scaffolded site with working CSS, search page, and RSS
 
 **Verification:**
-- [ ] `gh run watch` → success
-- [ ] `curl -sI https://bxljoy.github.io` → 200; open in browser
+- [x] `gh run watch` → success
+- [x] `curl -sI https://bxljoy.github.io` → 200; open in browser
 
 **Dependencies:** T1
 **Files likely touched:** `.github/workflows/deploy.yml`
 **Estimated scope:** S
 
 ## Checkpoint A: Foundation
-- [ ] Live URL works · build clean locally and in Actions · author glances at the live site
+- [x] Live URL works · build clean locally and in Actions · author glances at the live site
 
 ---
 
