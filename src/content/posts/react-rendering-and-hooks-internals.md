@@ -221,7 +221,7 @@ function Page() {
 
 This "move state down / lift content up" pattern often beats `React.memo`.
 
-**Related — why Context re-renders all consumers but a store doesn't.** Context propagates by re-rendering _every_ consumer on a `value` change (there are no selectors); a store (Zustand) subscribes per slice via `useSyncExternalStore`, so only the changed slice's subscribers re-render. The choice between them comes down to exactly this re-render granularity.
+**Related — why Context re-renders all consumers but a store doesn't.** Context propagates by re-rendering _every_ consumer on a `value` change (there are no selectors); a store (Zustand) subscribes per slice via `useSyncExternalStore`, so only the changed slice's subscribers re-render. The choice between them comes down to exactly this re-render granularity — see [React Context vs. a store (Zustand)](/posts/react-context-vs-store-state-management/).
 
 ## Gotchas
 
