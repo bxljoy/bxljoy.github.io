@@ -146,4 +146,5 @@ For commerce, cached stock is display information. Checkout must enforce availab
 ## References
 
 - Previous in this topic: [Next.js App Router foundations](/posts/nextjs-app-router-foundations/) — rendering modes, the Router Cache, and the RSC payload.
+- Next in this topic: [Next.js on the server](/posts/nextjs-on-the-server/#data-access-route-handlers-and-server-actions) — Server Actions and the mutation side of invalidation.
 - Next.js docs: [`cacheLife`](https://nextjs.org/docs/app/api-reference/functions/cacheLife) · [`use cache`](https://nextjs.org/docs/app/api-reference/directives/use-cache) · [`revalidateTag`](https://nextjs.org/docs/app/api-reference/functions/revalidateTag) · [Blocking-route diagnostic](https://nextjs.org/docs/messages/blocking-route)
