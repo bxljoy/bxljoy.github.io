@@ -6,4 +6,5 @@ posts:
   - at-least-once-to-exactly-once-effect
   - streaming-dedup-and-ordered-emission
   - request-idempotency-keys-for-write-apis
+  - distributed-unique-id-generation
 ---
