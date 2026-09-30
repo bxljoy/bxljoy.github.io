@@ -4,4 +4,5 @@ description: How Kafka stores and moves events, and how it compares to other mes
 order: 3
 posts:
   - kafka-core-architecture
+  - event-driven-architecture-and-kafka-as-event-log
 ---
