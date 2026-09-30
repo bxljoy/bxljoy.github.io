@@ -4,4 +4,5 @@ description: How Java threads see memory, and the locks, atomics, and collection
 order: 2
 posts:
   - java-memory-model-visibility-and-atomicity
+  - synchronized-monitors-dcl-and-simpledateformat
 ---
