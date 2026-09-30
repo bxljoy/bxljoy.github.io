@@ -9,4 +9,5 @@ posts:
   - distributed-unique-id-generation
   - outbox-pattern-and-dual-write-problem
   - outbox-publishers-and-parallel-dispatch
+  - saga-choreography-orchestration-and-compensation
 ---
