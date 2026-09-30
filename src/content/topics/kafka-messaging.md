@@ -5,4 +5,5 @@ order: 3
 posts:
   - kafka-core-architecture
   - event-driven-architecture-and-kafka-as-event-log
+  - kafka-vs-pubsub-architecture-comparison
 ---
