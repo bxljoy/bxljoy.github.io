@@ -10,4 +10,5 @@ posts:
   - nextjs-app-router-foundations
   - nextjs-caching
   - nextjs-on-the-server
+  - nextjs-in-production
 ---

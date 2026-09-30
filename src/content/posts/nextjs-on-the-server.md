@@ -125,4 +125,5 @@ Modern Next.js supports streaming metadata: the initial UI can arrive before `ge
 - Earlier in this topic:
   - [Next.js App Router foundations](/posts/nextjs-app-router-foundations/) — HTML, the RSC payload, and navigation.
   - [Caching in Next.js](/posts/nextjs-caching/) — invalidating caches after Server Action writes.
+- Next in this topic: [Running Next.js in production](/posts/nextjs-in-production/) — whether streaming and caches survive the deployment.
 - Next.js docs: [Proxy](https://nextjs.org/docs/app/api-reference/file-conventions/proxy) · [`generateMetadata`](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)
