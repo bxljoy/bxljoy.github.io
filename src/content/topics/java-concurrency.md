@@ -7,4 +7,5 @@ posts:
   - synchronized-monitors-dcl-and-simpledateformat
   - java-atomics-cas-contention-and-aba
   - explicit-locks-reentrantlock-rwlock-condition-stampedlock
+  - thread-safety-taxonomy-and-concurrent-collections
 ---
