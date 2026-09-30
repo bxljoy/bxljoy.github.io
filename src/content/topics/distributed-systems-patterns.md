@@ -4,4 +4,5 @@ description: Making services reliable when messages duplicate, arrive out of ord
 order: 4
 posts:
   - at-least-once-to-exactly-once-effect
+  - streaming-dedup-and-ordered-emission
 ---
