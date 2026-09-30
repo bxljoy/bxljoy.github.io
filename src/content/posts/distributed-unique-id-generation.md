@@ -139,7 +139,7 @@ Time-prefixed IDs assume the wall clock moves forward. There are three failure m
 - **ULID needs the monotonic factory for same-ms ordering.** Naive ULID generation can produce out-of-order values within a single millisecond.
 - **Never expose internal auto-increment IDs in public APIs.** It enables enumeration, scraping, and IDOR. Expose a UUID/slug, and keep the sequence internal.
 - **k-sortable ≠ globally ordered.** Never rely on ID order for _strict_ cross-node event ordering — use an explicit sequence number / logical clock (see [streaming dedup + ordered emission](/posts/streaming-dedup-and-ordered-emission/)).
-- **App-generated vs. DB-generated.** App-side IDs (UUID/Snowflake) are known _before_ the insert — useful for outbox rows, event references, and avoiding a round-trip; DB sequences require the insert first. (Idempotency keys like a `txn_id` are a _separate_ concept from the primary key — see [request-level idempotency keys](/posts/request-idempotency-keys-for-write-apis/).)
+- **App-generated vs. DB-generated.** App-side IDs (UUID/Snowflake) are known _before_ the insert — useful for [outbox rows](/posts/outbox-pattern-and-dual-write-problem/), event references, and avoiding a round-trip; DB sequences require the insert first. (Idempotency keys like a `txn_id` are a _separate_ concept from the primary key — see [request-level idempotency keys](/posts/request-idempotency-keys-for-write-apis/).)
 
 ## References
 

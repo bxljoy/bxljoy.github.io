@@ -7,4 +7,5 @@ posts:
   - streaming-dedup-and-ordered-emission
   - request-idempotency-keys-for-write-apis
   - distributed-unique-id-generation
+  - outbox-pattern-and-dual-write-problem
 ---

@@ -123,7 +123,7 @@ If events arrive as `queued(0), delivered(2), sent(1)`: process `queued`, buffer
 **Crash-safety is the catch** — the in-memory buffer and `nextExpectedSeq` evaporate on restart. Two options:
 
 1. **Lean on redelivery:** don't ack buffered (early) events → the broker redelivers them later. Simple, but churny.
-2. **Durable buffer (recommended):** persist events to a DB table keyed by `(entityId, seq)`, ack the broker immediately, and advance `nextExpectedSeq` by reading the contiguous prefix. The DB _is_ the reorder buffer — it survives restarts and spans instances. This is the **inbox pattern**, the receive-side mirror of the outbox pattern.
+2. **Durable buffer (recommended):** persist events to a DB table keyed by `(entityId, seq)`, ack the broker immediately, and advance `nextExpectedSeq` by reading the contiguous prefix. The DB _is_ the reorder buffer — it survives restarts and spans instances. This is the **inbox pattern**, the receive-side mirror of [the outbox pattern](/posts/outbox-pattern-and-dual-write-problem/).
 
 ## Failure under strict ordering — head-of-line blocking
 
