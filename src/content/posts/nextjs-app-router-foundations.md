@@ -158,7 +158,7 @@ The rendering strategy determines when work happens and how widely its output ca
 | Dynamic SSR  | Request time                               | Can use request-specific information                    |
 | PPR          | Prerendered shell plus runtime regions     | Reuses surrounding content while streaming dynamic work |
 
-In the previous App Router cache model, request APIs such as `cookies()`, `headers()`, page `searchParams`, or an explicit `no-store` fetch can require dynamic rendering. Reading identity in a shared root layout can therefore change many routes. With Cache Components, use the Cache Components rules instead (covered in the caching post of this series).
+In the previous App Router cache model, request APIs such as `cookies()`, `headers()`, page `searchParams`, or an explicit `no-store` fetch can require dynamic rendering. Reading identity in a shared root layout can therefore change many routes. With Cache Components, use the Cache Components rules instead (covered in [the caching post of this series](/posts/nextjs-caching/#cache-components-and-partial-prerendering)).
 
 `params` identifies path segments; `generateStaticParams()` can enumerate values to prerender. In the previous model, `dynamicParams = false` rejects unlisted paths; the on-demand behavior with it enabled also depends on the route's rendering configuration.
 
