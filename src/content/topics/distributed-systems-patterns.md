@@ -10,4 +10,5 @@ posts:
   - outbox-pattern-and-dual-write-problem
   - outbox-publishers-and-parallel-dispatch
   - saga-choreography-orchestration-and-compensation
+  - cap-pacelc-consistency-and-consensus
 ---

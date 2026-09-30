@@ -41,7 +41,7 @@ The textbook answer to a cross-service transaction is two-phase commit, which is
 - **It blocks.** If the coordinator dies mid-commit → participants hold their locks, waiting.
 - **Locks span network round trips** — throughput collapses under latency.
 - **Most participants don't support XA** — HTTP services, Kafka, most NoSQL stores.
-- **It picks C over A** in CAP terms: a partition means unavailability.
+- **It picks C over A** in [CAP terms](/posts/cap-pacelc-consistency-and-consensus/): a partition means unavailability.
 
 A saga takes the opposite trade — stay available, give up isolation, and reconcile with compensation.
 
