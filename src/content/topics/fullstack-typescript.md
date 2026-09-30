@@ -4,4 +4,5 @@ description: How the JavaScript side works — the Node.js event loop, NestJS re
 order: 5
 posts:
   - nodejs-event-loop-vs-java-concurrency
+  - nestjs-fastify-startup-and-request-lifecycle
 ---
