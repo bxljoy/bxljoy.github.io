@@ -287,6 +287,7 @@ If you can't make the receiver idempotent (no API support, you can't change thei
 
 ## References
 
+- Next in this topic: [Outbox publishers and parallel dispatch](/posts/outbox-publishers-and-parallel-dispatch/) — Part 2: poller vs. Kafka relay vs. Debezium, and the `@Transactional` trap.
 - Earlier in this topic:
   - [At-least-once delivery → exactly-once effect](/posts/at-least-once-to-exactly-once-effect/) — the receiver side: idempotent consumers and the inbox pattern.
   - [Request-level idempotency for write/send APIs](/posts/request-idempotency-keys-for-write-apis/) — the request-identity layer on the producer side.

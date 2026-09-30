@@ -8,4 +8,5 @@ posts:
   - request-idempotency-keys-for-write-apis
   - distributed-unique-id-generation
   - outbox-pattern-and-dual-write-problem
+  - outbox-publishers-and-parallel-dispatch
 ---
