@@ -1,0 +1,7 @@
+---
+title: Distributed Systems Patterns
+description: Making services reliable when messages duplicate, arrive out of order, or fail halfway.
+order: 4
+posts:
+  - at-least-once-to-exactly-once-effect
+---
