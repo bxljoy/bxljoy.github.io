@@ -5,4 +5,5 @@ order: 2
 posts:
   - java-memory-model-visibility-and-atomicity
   - synchronized-monitors-dcl-and-simpledateformat
+  - java-atomics-cas-contention-and-aba
 ---
