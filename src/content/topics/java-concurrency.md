@@ -10,4 +10,5 @@ posts:
   - thread-safety-taxonomy-and-concurrent-collections
   - threadlocal-mechanics-and-cleanup
   - platform-vs-virtual-threads-scheduling
+  - completablefuture-async-patterns-and-cancellation
 ---

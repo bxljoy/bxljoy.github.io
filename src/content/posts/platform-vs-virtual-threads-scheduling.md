@@ -161,3 +161,4 @@ Throughput on platform threads is gated by an artificial constant (the pool size
 - JEP 491 — Synchronize Virtual Threads without Pinning (Java 24)
 - Project Loom design notes — Ron Pressler
 - Related: [Node.js event loop vs. Java concurrency](/posts/nodejs-event-loop-vs-java-concurrency/)
+- Next in this topic: [CompletableFuture, async patterns, and the cancellation problem](/posts/completablefuture-async-patterns-and-cancellation/)
