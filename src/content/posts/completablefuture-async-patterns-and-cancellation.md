@@ -33,7 +33,7 @@ sourceNotes: [completablefuture-async-patterns-and-cancellation]
 - **The cancellation gotcha:** `CompletableFuture.cancel(true)` does **not** interrupt the running task — it only marks the future as cancelled. The underlying work keeps running. `CompletableFuture` was never designed for cancellation.
 - **`orTimeout(d, unit)` only fails the wrapper future.** It doesn't cancel the underlying tasks. The 500 virtual threads keep running; `executor.close()` then blocks waiting for them anyway. The timeout often saves nothing.
 - **Real cancellation paths:** drop to `Future.cancel(true)` from `executor.submit()` (interrupts the thread; works for I/O code that respects interrupts), or use `StructuredTaskScope` (Java 21+).
-- **`StructuredTaskScope.withTimeout(...)` (a Java 21 preview, GA in 25) is the modern fix.** When the scope's deadline hits, all unfinished forks are automatically interrupted. This is the future of structured async in Java.
+- **`StructuredTaskScope.withTimeout(...)` (a preview API since Java 21, still in preview as of Java 25) is the modern fix.** When the scope's deadline hits, all unfinished forks are automatically interrupted. This is the future of structured async in Java.
 - **With virtual threads, you often don't need `CompletableFuture` at all.** A plain `executor.submit()` + `Future.get()` is simpler. CF earned its keep when blocking was expensive (pre-Loom); now it's mostly for composition (`thenCompose`, `allOf`).
 - **Don't call `join()` inside a stream pipeline** — it serializes the futures one by one. Build the list of futures first (parallel kickoff), then call `allOf().join()` once at the end.
 - **Errors propagate via `CompletionException`**, wrapping the original exception. `exceptionally(fn)` recovers; `handle(biFn)` gets both success and failure.
@@ -339,7 +339,7 @@ try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
 
 For HTTP-heavy code, `cancel(true)` does work, and the threads will unwind.
 
-### Path C: `StructuredTaskScope` (a Java 21 preview, GA in 25)
+### Path C: `StructuredTaskScope` (preview since Java 21, still preview in Java 25)
 
 The modern, clean answer:
 
@@ -512,7 +512,7 @@ Notice:
 - **`get()` throws the checked `ExecutionException` and `InterruptedException`** — most modern code uses `join()` instead.
 - **Try-with-resources on the `executor` waits for tasks to finish.** If you want to abandon a batch, use `executor.shutdownNow()` (which sends interrupts) instead of relying on `close()`.
 - **`@Scheduled(fixedDelay)` waits for the previous run to fully return** before scheduling the next. If `dispatch()` blocks for 60s on the executor close, the next run is delayed by 60s.
-- **`StructuredTaskScope` is a preview API in Java 21** (GA in 25). Use it with the `--enable-preview` flag. The shape of the API may shift slightly between versions.
+- **`StructuredTaskScope` is a preview API** (since Java 21, and still in preview as of Java 25). Use it with the `--enable-preview` flag. The shape of the API may shift slightly between versions.
 - **`Future.cancel(true)` returns a `boolean`** — only meaningful if you check it. It returns false if the task has already completed or was already cancelled.
 - **`@Transactional` does NOT extend to `CompletableFuture` tasks.** Spring's transaction context is thread-bound (it uses [`ThreadLocal`](/posts/threadlocal-mechanics-and-cleanup/)); when `runAsync(..., executor)` submits work to a virtual thread, that thread starts with empty `ThreadLocal` state and sees no transaction. Putting `@Transactional` on a method that fans out async work only wraps the synchronous prelude (the fetch, the kickoff) — the actual async tasks run outside it. Use separate `@Transactional` methods on injected beans for the work the async tasks need to do transactionally. See [outbox publishers and parallel dispatch](/posts/outbox-publishers-and-parallel-dispatch/) for the canonical example.
 

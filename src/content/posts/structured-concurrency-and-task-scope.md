@@ -12,7 +12,7 @@ sourceNotes: [structured-concurrency-and-task-scope]
 
 ## Overview
 
-`CompletableFuture.allOf` works, but it leaves four problems to the caller: no automatic cancellation when one branch fails, no parent-child lifetime relationship, no thread-dump introspection, and it's easy to leak work by forgetting `join()`. Structured concurrency (the JEP 453 preview → JEP 480/499/505, finalized in Java 25) reframes the problem: child tasks **must** complete before the scope closes, the scope **must** be in a try-with-resources block, and a failure in one task **automatically** signals its siblings. This collapses ~30 lines of defensive `CompletableFuture` plumbing into a 6-line scope block, and makes the lifetime and error semantics legible from the code's shape alone.
+`CompletableFuture.allOf` works, but it leaves four problems to the caller: no automatic cancellation when one branch fails, no parent-child lifetime relationship, no thread-dump introspection, and it's easy to leak work by forgetting `join()`. Structured concurrency (the JEP 453 preview → JEP 480/499/505 — still in preview as of Java 25) reframes the problem: child tasks **must** complete before the scope closes, the scope **must** be in a try-with-resources block, and a failure in one task **automatically** signals its siblings. This collapses ~30 lines of defensive `CompletableFuture` plumbing into a 6-line scope block, and makes the lifetime and error semantics legible from the code's shape alone.
 
 This post covers the API shape, the three standard joiners, cancellation propagation, `ScopedValue` interaction, and the rare cases where `CompletableFuture` still beats `StructuredTaskScope`.
 
@@ -58,7 +58,7 @@ Four problems are baked into this shape:
 ## The structured equivalent
 
 ```java
-// Structured — Java 25 final API (JEP 505)
+// Structured — Java 25 preview API (JEP 505)
 try (var scope = StructuredTaskScope.open(Joiner.<Object>allSuccessfulOrThrow())) {
     Subtask<User>        userTask    = scope.fork(() -> userSvc.fetch(id));
     Subtask<List<Order>> ordersTask  = scope.fork(() -> orderSvc.fetch(id));
@@ -187,13 +187,13 @@ Cancellation in the outer scope propagates inward (it interrupts the inner scope
 
 Structured concurrency replaces `allOf`-style fan-out/fan-in. It does **not** replace:
 
-| Use case                                             | Prefer `CompletableFuture` because                                                |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Chained transformations (`thenApply`, `thenCompose`) | They're pipelines, not fan-outs; `StructuredTaskScope` has no equivalent          |
-| Callbacks on completion (`whenComplete`, `handle`)   | Async hooks that fire when ready, not scope-bound                                 |
-| Work that genuinely outlives the calling method      | Background tasks, fire-and-forget; structured concurrency forbids this on purpose |
-| Composition with reactive streams / Project Reactor  | `CompletableFuture` interops; structured scopes don't                             |
-| Pre-Java 21 codebases                                | `StructuredTaskScope` requires 21+ (preview) or 25+ (stable)                      |
+| Use case                                             | Prefer `CompletableFuture` because                                                                |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Chained transformations (`thenApply`, `thenCompose`) | They're pipelines, not fan-outs; `StructuredTaskScope` has no equivalent                          |
+| Callbacks on completion (`whenComplete`, `handle`)   | Async hooks that fire when ready, not scope-bound                                                 |
+| Work that genuinely outlives the calling method      | Background tasks, fire-and-forget; structured concurrency forbids this on purpose                 |
+| Composition with reactive streams / Project Reactor  | `CompletableFuture` interops; structured scopes don't                                             |
+| Pre-Java 21 codebases                                | `StructuredTaskScope` requires 21+, and is still a preview API (`--enable-preview`) as of Java 25 |
 
 The principle: if the work has a **definite lifetime ending in the current method**, use a scope. If the work is genuinely **asynchronous / unbounded / chained**, stick with `CompletableFuture`.
 
@@ -255,7 +255,7 @@ try (var scope = StructuredTaskScope.open(Joiner.<Result>awaitAll())) {
 
 ## Gotchas
 
-- **The API has churned through previews.** The Java 21 preview API used `ShutdownOnFailure` / `ShutdownOnSuccess` subclasses; Java 25 finalized it as `Joiner` strategies passed to `open()`. Tutorials online may show the old API — confirm against your Java version. The stable API is Java 25 (JEP 505).
+- **The API has churned through previews.** The Java 21 preview API used `ShutdownOnFailure` / `ShutdownOnSuccess` subclasses; Java 25 (JEP 505) reshaped it into `Joiner` strategies passed to `open()`. Tutorials online may show the old API — confirm against your Java version. It's still a preview API as of Java 25, so it needs `--enable-preview` and may change again.
 - **`Subtask.get()` is only safe after `scope.join()`.** Calling `get()` before the join throws `IllegalStateException`. This is structurally enforced — you can't accidentally read a future result.
 - **`scope.fork()` after `scope.join()` throws.** Forks must happen before the join. Reusing a scope for "another batch of work" requires a new scope.
 - **Interruption is cooperative.** A CPU-bound subtask that doesn't check `Thread.isInterrupted()` will run to completion even after `allSuccessfulOrThrow` decides to cancel. Make CPU loops interrupt-aware, or move them to a different model.
