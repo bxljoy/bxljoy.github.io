@@ -373,3 +373,4 @@ In a Spring Boot web app, you **don't create threads for DB parallelism — you 
 - [Hatchet, "The fastest way to insert rows into Postgres"](https://hatchet.run/blog/fastest-postgres-inserts) (part 2 covers multi-table transactions, FK overhead / `multixact members limit exceeded`, and unlogged tables)
 - [Postgres COPY docs](https://www.postgresql.org/docs/current/sql-copy.html)
 - [pgJDBC connection parameters](https://jdbc.postgresql.org/documentation/use/#connection-parameters)
+- Next in this topic: [Claim-then-process worker queue on Postgres + Spring](/posts/claim-then-process-worker-queue/) — `FOR UPDATE SKIP LOCKED` as the read-side counterpart.

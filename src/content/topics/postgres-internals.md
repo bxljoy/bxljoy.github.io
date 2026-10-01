@@ -12,4 +12,5 @@ posts:
   - connection-pool-vs-database-contention
   - postgres-write-batching-and-idempotency
   - postgres-insert-throughput-and-buffered-writers
+  - claim-then-process-worker-queue
 ---
