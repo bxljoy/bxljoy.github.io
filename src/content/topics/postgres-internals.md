@@ -11,4 +11,5 @@ posts:
   - scaling-databases-replicas-partitioning-sharding
   - connection-pool-vs-database-contention
   - postgres-write-batching-and-idempotency
+  - postgres-insert-throughput-and-buffered-writers
 ---

@@ -80,7 +80,7 @@ spring:
     url: jdbc:postgresql://host:5432/db?reWriteBatchedInserts=true
 ```
 
-This effectively promotes Level 2 to Level 3 without changing any application code — typically 2–3x on batch inserts. **Most Spring codebases never set it**, which is why `batch_size=50` often underdelivers against expectations. (The win comes from an amortised `fsync`, not from fewer packets.)
+This effectively promotes Level 2 to Level 3 without changing any application code — typically 2–3x on batch inserts. **Most Spring codebases never set it**, which is why `batch_size=50` often underdelivers against expectations. (The win comes from an amortised `fsync`, not from fewer packets — see [Postgres insert throughput](/posts/postgres-insert-throughput-and-buffered-writers/).)
 
 #### A critical gotcha: IDENTITY defeats batching
 
@@ -326,3 +326,4 @@ Postgres's `ON CONFLICT` is widely considered the cleanest — an explicit targe
 - [Postgres docs — `INSERT ... ON CONFLICT`](https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT)
 - [Hibernate batching docs](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#batch)
 - [Postgres COPY docs](https://www.postgresql.org/docs/current/sql-copy.html)
+- Next in this topic: [Postgres insert throughput: fsync amortisation, connection saturation, and buffered writers](/posts/postgres-insert-throughput-and-buffered-writers/) — the layer underneath.
