@@ -9,4 +9,5 @@ posts:
   - postgres-autovacuum-execution-and-tuning
   - database-indexing-and-query-planning
   - scaling-databases-replicas-partitioning-sharding
+  - connection-pool-vs-database-contention
 ---
