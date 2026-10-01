@@ -243,3 +243,4 @@ For AWS architectures above ~500 connections, RDS Proxy is almost always the rig
 - [AWS RDS Proxy docs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html)
 - [Postgres connection settings (`max_connections`)](https://www.postgresql.org/docs/current/runtime-config-connection.html)
 - [PgBouncer configuration and pooling modes](https://www.pgbouncer.org/config.html)
+- Next in this topic: [Postgres write performance: batching and ON CONFLICT idempotency](/posts/postgres-write-batching-and-idempotency/) — reducing DB write load via batching.
