@@ -131,7 +131,7 @@ When any subtask in `allSuccessfulOrThrow` fails:
 3. The interrupted VT either:
    - throws `InterruptedException` from a blocking call → it propagates out of the task body
    - notices `Thread.currentThread().isInterrupted()` and returns early
-   - **ignores the interrupt and runs to completion** — Java has no force-kill
+   - **ignores the interrupt and runs to completion** — Java has no force-kill (see [graceful shutdown](/posts/thread-pool-queue-oom-and-virtual-thread-limits/#graceful-shutdown--shutdown-vs-shutdownnow))
 4. The scope waits for all subtasks to actually finish before `join()` returns.
 5. The original failure's exception is thrown from `scope.join()`.
 
@@ -276,3 +276,4 @@ try (var scope = StructuredTaskScope.open(Joiner.<Result>awaitAll())) {
   - [Platform threads vs. virtual threads](/posts/platform-vs-virtual-threads-scheduling/) — VTs back every fork; mount/unmount mechanics.
   - [CompletableFuture, async patterns, and the cancellation problem](/posts/completablefuture-async-patterns-and-cancellation/) — when CF is still the right tool.
   - [ThreadLocal mechanics and cleanup](/posts/threadlocal-mechanics-and-cleanup/) — `ScopedValue` is the partner primitive for context propagation.
+- Next in this topic: [Thread pool queue OOM and virtual-thread concurrency limits](/posts/thread-pool-queue-oom-and-virtual-thread-limits/) — graceful shutdown and cooperative interrupt semantics.
