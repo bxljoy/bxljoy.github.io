@@ -9,4 +9,5 @@ posts:
   - explicit-locks-reentrantlock-rwlock-condition-stampedlock
   - thread-safety-taxonomy-and-concurrent-collections
   - threadlocal-mechanics-and-cleanup
+  - platform-vs-virtual-threads-scheduling
 ---
