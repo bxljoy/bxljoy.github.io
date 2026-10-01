@@ -11,4 +11,5 @@ posts:
   - threadlocal-mechanics-and-cleanup
   - platform-vs-virtual-threads-scheduling
   - completablefuture-async-patterns-and-cancellation
+  - structured-concurrency-and-task-scope
 ---

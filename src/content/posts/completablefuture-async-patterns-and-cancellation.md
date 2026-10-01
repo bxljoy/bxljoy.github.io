@@ -554,3 +554,4 @@ Need to run multiple things in parallel?
 - [`CompletableFuture` Javadoc](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)
 - Stuart Marks on cancellation in CF — discussions on the OpenJDK mailing lists (multiple threads over the years).
 - [Heinz Kabutz on `CompletableFuture` traps](https://www.javaspecialists.eu/archive/Issue263-CompletableFuture-Misuse.html)
+- Next in this topic: [Structured concurrency and StructuredTaskScope](/posts/structured-concurrency-and-task-scope/)
