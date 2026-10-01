@@ -11,4 +11,5 @@ posts:
   - outbox-publishers-and-parallel-dispatch
   - saga-choreography-orchestration-and-compensation
   - cap-pacelc-consistency-and-consensus
+  - multi-az-active-active-vs-active-passive
 ---

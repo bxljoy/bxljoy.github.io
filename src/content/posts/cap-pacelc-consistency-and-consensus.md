@@ -12,7 +12,7 @@ sourceNotes: [distributed-systems-cap-pacelc-consistency-and-consensus]
 
 ## Overview
 
-This is the theory layer beneath patterns covered in practice elsewhere — [the outbox pattern](/posts/outbox-pattern-and-dual-write-problem/), [sagas](/posts/saga-choreography-orchestration-and-compensation/), idempotency, and multi-AZ active-active vs. active-passive deployments. The goal is precise vocabulary: most confusion here comes not from not knowing the ideas, but from stating CAP loosely or conflating the two "consistencies".
+This is the theory layer beneath patterns covered in practice elsewhere — [the outbox pattern](/posts/outbox-pattern-and-dual-write-problem/), [sagas](/posts/saga-choreography-orchestration-and-compensation/), idempotency, and [multi-AZ active-active vs. active-passive](/posts/multi-az-active-active-vs-active-passive/) deployments. The goal is precise vocabulary: most confusion here comes not from not knowing the ideas, but from stating CAP loosely or conflating the two "consistencies".
 
 ## Key points
 
@@ -128,7 +128,7 @@ Two nodes both believing they're the leader → conflicting writes → corruptio
 
 ## How this connects to other topics
 
-- **Multi-AZ active-active vs. active-passive** — active-active is an AP/availability lean; active-passive with synchronous replication leans CP. CAP/PACELC is the formal lens for that choice.
+- [Multi-AZ active-active vs. active-passive](/posts/multi-az-active-active-vs-active-passive/) — active-active is an AP/availability lean; active-passive with synchronous replication leans CP. CAP/PACELC is the formal lens for that choice.
 - [The outbox pattern](/posts/outbox-pattern-and-dual-write-problem/) and [at-least-once delivery → exactly-once effect](/posts/at-least-once-to-exactly-once-effect/) — how you stay _correct_ in an eventually consistent (AP) world: idempotency plus convergence.
 - [Kafka core architecture](/posts/kafka-core-architecture/) — partitions have a leader plus follower replicas with an **ISR** (in-sync replicas) set; `acks=all` + `min.insync.replicas` is a quorum-style durability knob; the controller is consensus-elected (KRaft).
 - **Compare-and-swap** is the single-object primitive that linearizability is defined around.

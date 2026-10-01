@@ -14,7 +14,7 @@ sourceNotes: [scaling-databases-read-replicas-partitioning-sharding]
 
 When one relational primary stops coping, there's a well-defined escalation path, and the real skill is knowing which rung the problem actually needs — not jumping to sharding because it sounds impressive. This post covers each rung: read replicas and the read-after-write problem they create, in-database partitioning and partition pruning, and full sharding with shard-key selection, the cross-shard problems it introduces, and resharding strategy.
 
-It builds on [CAP, PACELC, and consensus](/posts/cap-pacelc-consistency-and-consensus/) (replication and consistency), multi-AZ failover topology, [indexing and query planning](/posts/database-indexing-and-query-planning/) (partition pruning), and [distributed unique ID generation](/posts/distributed-unique-id-generation/) (why sharding kills auto-increment).
+It builds on [CAP, PACELC, and consensus](/posts/cap-pacelc-consistency-and-consensus/) (replication and consistency), [multi-AZ failover topology](/posts/multi-az-active-active-vs-active-passive/), [indexing and query planning](/posts/database-indexing-and-query-planning/) (partition pruning), and [distributed unique ID generation](/posts/distributed-unique-id-generation/) (why sharding kills auto-increment).
 
 ## Key points
 
@@ -44,7 +44,7 @@ Always climb in order. A surprising number of "we need to shard" situations are 
 
 The leader takes all writes and streams changes to follower replicas that serve reads.
 
-- **Recap (multi-AZ):** an RDS Multi-AZ standby is _synchronous_, for failover, and **not readable**. Read Replicas are _asynchronous_, **readable**, and for read scaling. They're independent features; you can run both.
+- **Recap ([multi-AZ](/posts/multi-az-active-active-vs-active-passive/)):** an RDS Multi-AZ standby is _synchronous_, for failover, and **not readable**. Read Replicas are _asynchronous_, **readable**, and for read scaling. They're independent features; you can run both.
 - **Replication mechanism:** Postgres uses **WAL streaming** (physical replication) for hot standbys, and **logical replication** for selective / cross-version / CDC use. (MySQL: binlog, row- or statement-based.)
 - **The sync vs. async trade-off:** synchronous replication = zero lag, but every commit waits for the replica (a latency + availability cost); asynchronous = fast commits, but the replica trails. Quorum/semi-sync sits between (see the [quorum discussion](/posts/cap-pacelc-consistency-and-consensus/#consensus--how-a-cp-system-actually-agrees) in the CAP post).
 
