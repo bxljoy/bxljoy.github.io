@@ -12,4 +12,5 @@ posts:
   - saga-choreography-orchestration-and-compensation
   - cap-pacelc-consistency-and-consensus
   - multi-az-active-active-vs-active-passive
+  - cqrs-write-read-split-and-projections
 ---

@@ -130,7 +130,7 @@ Routing is done by the app or by middleware: **Citus** (a Postgres extension), *
 
 - **Cross-shard joins** don't exist. Either denormalize so related data is co-located, or do **scatter-gather** (fan out to all shards, merge in the app) — slow and limited.
 - **Cross-shard transactions** aren't a single ACID unit. You need a **saga** or two-phase commit (see [the outbox pattern](/posts/outbox-pattern-and-dual-write-problem/)). **Design to keep each transaction within one shard.**
-- **Global aggregates / reports** need fan-out + merge, or a separate read model / analytics store (CQRS).
+- **Global aggregates / reports** need fan-out + merge, or a separate read model / analytics store ([CQRS](/posts/cqrs-write-read-split-and-projections/)).
 - **Unique IDs** — there's no single auto-increment across shards. Use Snowflake/UUIDv7/ULID (see [distributed unique ID generation](/posts/distributed-unique-id-generation/)); some schemes bake the shard ID into the value.
 - **Referential integrity** — FK constraints can't span shards; enforce them in the application.
 

@@ -378,7 +378,7 @@ Two things the pattern descriptions skip, and production doesn't:
 - **Irreversible actions must sit after the pivot.** If an email or a dispatch happens early, you have no valid compensation, and the design is wrong regardless of implementation quality.
 - **Modelling the entire aggregate lifecycle as one saga** is the most common structural mistake. The saga ends at CONFIRMED; the order lives on for months afterwards on ordinary event handling. If your "saga" has no definite end, it isn't one.
 - **Invariants placed in the orchestrator instead of the aggregate** guarantee drift — every saga touching that entity reimplements the rule. The saga _requests_ a transition; the aggregate _decides_ whether it's legal.
-- **Saga ≠ cache consistency ≠ read-model projection.** All three use outboxes; they solve different problems. A one-way projection (like a CQRS read model) is _not_ a saga — there's no multi-service transaction and nothing to compensate.
+- **Saga ≠ cache consistency ≠ read-model projection.** All three use outboxes; they solve different problems. A one-way projection (like a [CQRS read model](/posts/cqrs-write-read-split-and-projections/)) is _not_ a saga — there's no multi-service transaction and nothing to compensate.
 - **Without step timeouts, a saga has no liveness guarantee** — only a safety one. A dead participant means orders frozen indefinitely.
 
 ## References
