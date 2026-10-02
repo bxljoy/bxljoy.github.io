@@ -177,3 +177,4 @@ public void reapStuck() { repo.resetStuckInProgress(Duration.ofMinutes(5)); }
   - [The outbox pattern and the dual-write problem](/posts/outbox-pattern-and-dual-write-problem/) · [Outbox publishers and parallel dispatch](/posts/outbox-publishers-and-parallel-dispatch/) — the outbox relay is the same claim-then-process shape.
   - [CompletableFuture, async patterns, and the cancellation problem](/posts/completablefuture-async-patterns-and-cancellation/) — the fan-out concurrency.
 - [Postgres `SELECT … FOR UPDATE SKIP LOCKED`](https://www.postgresql.org/docs/current/sql-select.html#SQL-FOR-UPDATE-SHARE)
+- Next in this topic: [Wallet concurrency control: pessimistic lock, optimistic lock, append-only ledger](/posts/wallet-concurrency-control/)

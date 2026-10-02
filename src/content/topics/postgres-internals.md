@@ -13,4 +13,5 @@ posts:
   - postgres-write-batching-and-idempotency
   - postgres-insert-throughput-and-buffered-writers
   - claim-then-process-worker-queue
+  - wallet-concurrency-control
 ---
