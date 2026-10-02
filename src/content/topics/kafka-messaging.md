@@ -7,4 +7,5 @@ posts:
   - event-driven-architecture-and-kafka-as-event-log
   - kafka-vs-pubsub-architecture-comparison
   - kafka-exactly-once-transactions-and-schema-evolution
+  - pubsub-topic-subscription-and-dlq-model
 ---
